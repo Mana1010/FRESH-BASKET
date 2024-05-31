@@ -99,48 +99,210 @@
       </div>
     </main>
     <!-- ABOUT SECTION -->
-    <main class="w-full h-screen bg-[#EDD7AD] py-5 px-3">
+    <main id="about-page" class="w-full md:h-screen bg-[#EDD7AD] py-5 px-3">
       <div
-        class="grid grid-cols-1 md:grid-cols-2 items-center justify-center h-full w-full"
+        class="grid grid-cols-1 h-full md:grid-cols-2 w-full md:space-x-3 space-y-3 md:space-y-0"
       >
         <div class="flex items-center flex-col justify-center">
           <div class="flex items-center relative w-full justify-center">
-            <div class="max-w-[300px] absolute right-0">
-              <img
-                class="rounded-lg w-full"
-                src="../images/about-section-imgs/pork.png"
-                alt="pork"
-              />
-            </div>
-            <div class="max-w-[300px] absolute right-[7rem]">
-              <img
-                class="rounded-lg w-full"
-                src="../images/about-section-imgs/vegetable.png"
-                alt="vegetables"
-              />
-            </div>
-            <div class="max-w-[300px] absolute right-[14rem]">
-              <img
-                class="rounded-lg w-full"
-                src="../images/about-section-imgs/chicken.png"
-                alt="chicken"
-              />
-            </div>
-            <div class="max-w-[300px] absolute right-[21rem]">
-              <img
-                class="rounded-lg w-full"
-                src="../images/about-section-imgs/beef.png"
-                alt="beef"
-              />
-            </div>
-            <div class="max-w-[300px] absolute right-[28rem]">
-              <img
-                class="rounded-lg w-full absolute"
-                src="../images/about-section-imgs/fruits.png"
-                alt="fruits"
-              />
-            </div>
+            <img
+              src="../images/about-section-imgs/about-photo.png"
+              width="600"
+              alt="asbout-photo"
+            />
+            <!-- THE SIDE DESIGN -->
+            <div class="absolute bg-primary w-1/2 h-[2px] top-0 left-0"></div>
+            <div class="absolute bg-primary w-1/2 h-[2px] top-5 left-10"></div>
+            <div
+              class="absolute bg-primary w-1/2 h-[2px] bottom-0 right-0"
+            ></div>
+            <div
+              class="absolute bg-primary w-1/2 h-[2px] bottom-5 right-10"
+            ></div>
+            <div class="absolute bg-primary w-[2px] h-1/2 top-0 left-0"></div>
+            <div class="absolute bg-primary w-[2px] h-1/2 top-10 left-5"></div>
+            <div
+              class="absolute bg-primary w-[2px] h-1/2 bottom-0 right-0"
+            ></div>
+            <div
+              class="absolute bg-primary w-[2px] h-1/2 bottom-10 right-5"
+            ></div>
+            <!-- THE SIDE DESIGN -->
           </div>
+        </div>
+        <div class="flex flex-col justify-center items-center w-full md:px-2">
+          <h2
+            class="text-secondary font-semibold md:text-[2.5rem] text-[1.5rem]"
+          >
+            ABOUT
+            <span class="text-primary font-semibold md:text-[3rem] text-[2rem]"
+              >FRESH BASKET</span
+            >
+          </h2>
+          <p class="text-center">
+            <span class="text-primary font-bold">FRESH BASKET</span> is an
+            online marketplace that brings the freshest, locally-sourced
+            produce, meats, and seafood directly to your doorstep. Our
+            commitment lies in supporting local farmers and suppliers, ensuring
+            every item in your basket is handpicked at peak ripeness and
+            delivered with uncompromising freshness. From seasonal fruits and
+            veggies to premium cuts of meat and fresh-caught seafood, our
+            diverse selection celebrates nature's bounty. With a user-friendly
+            platform, efficient delivery, and unbeatable prices by cutting out
+            middlemen, FreshBasket offers unmatched convenience and
+            affordability. We prioritize sustainability through eco-friendly
+            practices, reducing food miles, and responsible sourcing. Experience
+            the ultimate farm-to-table freshness with FreshBasket.
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- THE SHOP SECTION -->
+    <main class="w-full bg-[#EDD7AD] py-5 flex flex-col overflow-x-hidden">
+      <h1 class="text-center text-5xl font-bold text-primary">SHOP NOW</h1>
+      <div
+        class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:lg-grid-cols-4 justify-center md:space-x-5 w-full px-2 space-y-10 pt-2"
+      >
+        <div
+          class="min-h-[500px] relative flex justify-center items-center flex-col"
+        >
+          <!-- THE SIDE DESIGN -->
+          <div class="absolute bg-primary w-1/2 h-[2px] top-0 left-0"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] top-5 left-10"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-1/2 h-[2px] bottom-5 right-10"
+          ></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-0 left-0"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-10 left-5"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-[2px] h-1/2 bottom-10 right-5"
+          ></div>
+          <!-- THE SIDE DESIGN -->
+          <a href="/src/pages/index.html">
+            <img
+              src="../images/type-selection/beef.png"
+              alt="beef"
+              width="250"
+              class="md:scale-90 md:hover:scale-100 transition-transform duration-200 ease-linear"
+            />
+          </a>
+          <div>
+            <h2 class="text-[#CA0000] font-extrabold text-2xl text-center">
+              MEAT SECTION
+            </h2>
+            <small class="italic text-center"
+              >"Where every cut is a work of art."</small
+            >
+          </div>
+        </div>
+        <div
+          class="min-h-[450px] relative flex justify-center items-center flex-col"
+        >
+          <!-- THE SIDE DESIGN -->
+          <div class="absolute bg-primary w-1/2 h-[2px] top-0 left-0"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] top-5 left-10"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-1/2 h-[2px] bottom-5 right-10"
+          ></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-0 left-0"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-10 left-5"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-[2px] h-1/2 bottom-10 right-5"
+          ></div>
+          <!-- THE SIDE DESIGN -->
+          <a href="/src/pages/index.html">
+            <img
+              src="../images/type-selection/seafood.png"
+              alt="seafood"
+              width="250"
+              class="md:scale-90 md:hover:scale-100 transition-transform duration-200 ease-linear"
+            />
+          </a>
+          <div>
+            <h2 class="text-[#1B7080] font-extrabold text-2xl text-center">
+              SEAFOOD SECTION
+            </h2>
+            <small class="italic text-center"
+              >"Fresh from the ocean's bounty."</small
+            >
+          </div>
+        </div>
+        <div
+          class="min-h-[450px] relative flex justify-center items-center flex-col"
+        >
+          <!-- THE SIDE DESIGN -->
+          <div class="absolute bg-primary w-1/2 h-[2px] top-0 left-0"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] top-5 left-10"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-1/2 h-[2px] bottom-5 right-10"
+          ></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-0 left-0"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-10 left-5"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-[2px] h-1/2 bottom-10 right-5"
+          ></div>
+          <!-- THE SIDE DESIGN -->
+          <a href="/src/pages/index.html">
+            <img
+              src="../images/type-selection/veggies.png"
+              alt="veggies"
+              width="250"
+              class="md:scale-90 md:hover:scale-100 transition-transform duration-200 ease-linear"
+            />
+          </a>
+          <div>
+            <h2 class="text-[#91AB24] font-extrabold text-2xl text-center">
+              VEGETABLES SECTION
+            </h2>
+            <small class="italic text-center"
+              >"Vibrant, nutritious, and bursting with flavor."</small
+            >
+          </div>
+        </div>
+        <div
+          class="min-h-[450px] relative flex justify-center items-center flex-col"
+        >
+          <!-- THE SIDE DESIGN -->
+          <div class="absolute bg-primary w-1/2 h-[2px] top-0 left-0"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] top-5 left-10"></div>
+          <div class="absolute bg-primary w-1/2 h-[2px] bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-1/2 h-[2px] bottom-5 right-10"
+          ></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-0 left-0"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 top-10 left-5"></div>
+          <div class="absolute bg-primary w-[2px] h-1/2 bottom-0 right-0"></div>
+          <div
+            class="absolute bg-primary w-[2px] h-1/2 bottom-10 right-5"
+          ></div>
+          <!-- THE SIDE DESIGN -->
+          <a href="/src/pages/index.html">
+            <img
+              src="../images/type-selection/fruits.png"
+              alt="fruits"
+              width="250"
+              class="md:scale-90 md:hover:scale-100 transition-transform duration-200 ease-linear"
+            />
+          </a>
+          <div>
+            <h2 class="text-[#EE3841] font-extrabold text-2xl text-center">
+              FRUITS SECTION
+            </h2>
+            <small class="italic text-center"
+              >"Nature's sweet and juicy delights."</small
+            >
+          </div>
+        </div>
+        <div
+          class="flex items-center flex-col w-full justify-center md:col-span-2"
+        >
+          <h1 class="text-3xl">Coming Soon....</h1>
         </div>
       </div>
     </main>
