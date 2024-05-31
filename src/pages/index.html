@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <title>FRESH BASKET</title>
+  </head>
+  <body>
+    <!-- HOME SECTION -->
+    <main id="main" class="flex items-center h-screen w-full px-5">
+      <header
+        class="absolute top-0 right-0 left-0 px-5 flex justify-between items-center py-2"
+      >
+        <a href="/src/pages/index.html">
+          <div class="flex items-center space-x-1">
+            <img
+              src="../images/shopping-bag.png"
+              width="50"
+              alt="shopping-bag"
+            />
+            <h3 class="font-semibold text-primary">FRESH BASKET</h3>
+          </div>
+        </a>
+        <div class="flex items-center space-x-2">
+          <a href="/src/pages/index.html">
+            <span class="text-3xl text-white relative"
+              ><ion-icon name="cart-outline"></ion-icon
+            ></span>
+          </a>
+          <a href="/src/pages/index.html">
+            <span class="text-3xl text-white relative"
+              ><ion-icon name="heart-outline"></ion-icon
+            ></span>
+          </a>
+        </div>
+      </header>
+      <div class="md:basis-[60%] basis-full space-y-2">
+        <div class="flex items-center space-x-1 justify-center w-full">
+          <img src="../images/shopping-bag.png" width="30" alt="shopping-bag" />
+          <h3 class="font-semibold text-primary">FRESH BASKET</h3>
+        </div>
+        <h1
+          class="md:text-[4rem] text-[3rem] text-white font-[900] text-center"
+        >
+          Nature's Bounty, Delivered <span class="text-primary">Fresh</span>
+        </h1>
+        <div></div>
+        <div class="flex justify-center">
+          <button
+            class="bg-primary w-full md:w-[50%] py-2.5 font-[500] rounded-md text-white"
+          >
+            SHOP NOW
+          </button>
+        </div>
+      </div>
+    </main>
+    <!-- BENEFITS SECTION -->
+    <main id="benefits-page" class="w-full py-5">
+      <h1 class="text-2xl text-[#BA8B5E] text-center font-semibold">
+        WHY <span class="text-primary">FRESH BASKET?</span>
+      </h1>
+      <div class="flex w-full items-center justify-center">
+        <div
+          class="w-[600px] grid grid-cols-1 md:grid-cols-3 space-y-5 md:space-y-0 pt-3"
+        >
+          <div class="flex items-center justify-center space-y-2 flex-col">
+            <div
+              class="bg-primary text-white p-1 rounded-full w-[80px] h-[80px] flex justify-center items-center text-3xl"
+            >
+              <span class="flex items-center justify-center"
+                ><ion-icon name="leaf-outline"></ion-icon
+              ></span>
+            </div>
+            <h4 class="text-primary font-bold text-xl">FRESH</h4>
+          </div>
+          <div class="flex items-center justify-center space-y-2 flex-col">
+            <div
+              class="bg-primary text-white p-1 rounded-full w-[80px] h-[80px] flex justify-center items-center text-3xl"
+            >
+              <span class="flex items-center justify-center"
+                ><ion-icon name="cash-outline"></ion-icon
+              ></span>
+            </div>
+            <h4 class="text-primary font-bold text-xl">AFFORDABLE</h4>
+          </div>
+          <div class="flex items-center justify-center space-y-2 flex-col">
+            <div
+              class="bg-primary text-white p-1 rounded-full w-[80px] h-[80px] flex justify-center items-center text-3xl"
+            >
+              <span class="flex items-center justify-center"
+                ><ion-icon name="shield-checkmark-outline"></ion-icon
+              ></span>
+            </div>
+            <h4 class="text-primary font-bold text-xl">SAFE</h4>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ABOUT SECTION -->
+    <main class="w-full h-screen bg-[#EDD7AD] py-5 px-3">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 items-center justify-center h-full w-full"
+      >
+        <div class="flex items-center flex-col justify-center">
+          <div class="flex items-center relative w-full justify-center">
+            <div class="max-w-[300px] absolute right-0">
+              <img
+                class="rounded-lg w-full"
+                src="../images/about-section-imgs/pork.png"
+                alt="pork"
+              />
+            </div>
+            <div class="max-w-[300px] absolute right-[7rem]">
+              <img
+                class="rounded-lg w-full"
+                src="../images/about-section-imgs/vegetable.png"
+                alt="vegetables"
+              />
+            </div>
+            <div class="max-w-[300px] absolute right-[14rem]">
+              <img
+                class="rounded-lg w-full"
+                src="../images/about-section-imgs/chicken.png"
+                alt="chicken"
+              />
+            </div>
+            <div class="max-w-[300px] absolute right-[21rem]">
+              <img
+                class="rounded-lg w-full"
+                src="../images/about-section-imgs/beef.png"
+                alt="beef"
+              />
+            </div>
+            <div class="max-w-[300px] absolute right-[28rem]">
+              <img
+                class="rounded-lg w-full absolute"
+                src="../images/about-section-imgs/fruits.png"
+                alt="fruits"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#E56E1E",
+            secondary: "#30373A",
+          },
+        },
+      },
+    };
+  </script>
+  <script type="module" src="../js/script.js"></script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+</html>
