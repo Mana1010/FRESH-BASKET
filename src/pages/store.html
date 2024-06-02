@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../styles/style.css" />
+
+    <title>Fresh Basket Shop</title>
+  </head>
+  <body>
+    <main class="w-full h-screen flex flex-col bg-[#F9F4F4]">
+      <header
+        class="px-3 flex justify-between items-center py-2.5 space-x-4 shadow-lg"
+      >
+        <a href="/src/pages/index.html">
+          <div class="flex items-center space-x-1">
+            <img
+              src="../images/shopping-bag.png"
+              width="50"
+              alt="shopping-bag"
+            />
+            <h3 class="font-semibold text-secondary">FRESH BASKET</h3>
+          </div>
+        </a>
+        <div class="w-[50%]">
+          <div
+            class="w-full h-[2.7rem] bg-transparent flex items-center ring-primary ring-[1px]"
+          >
+            <button
+              class="bg-primary flex items-center justify-center text-lg text-white px-2.5 h-full"
+            >
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+            <input
+              id="input-search-box"
+              type="text"
+              placeholder="Search your product"
+              class="bg-transparent px-3 outline-none flex-grow text-secondary placeholder:font-normal font-bold overflow-x-auto"
+            />
+            <button
+              id="remove-search-button"
+              class="items-center justify-center text-lg text-secondary px-2.5 h-full rounded-md hidden"
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+        <div>sdd</div>
+      </header>
+      <div
+        class="py-3 w-full flex items-center justify-between bg-secondary px-5"
+      >
+        <img src="../images/rainbow-flag.png" width="50" alt="rainbow-flag" />
+        <h2 class="text-white text-center md:text-base text-sm">
+          Save the Date: FreshBasket's Rainbow Market Event 6/6
+        </h2>
+        <img
+          src="../images/rainbow-flag.png"
+          width="50"
+          alt="rainbow-flag"
+          class="hidden md:flex"
+        />
+      </div>
+      <div class="flex flex-col space-y-2 px-5 flex-grow h-full pt-5">
+        <div
+          class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-1 items-center justify-center"
+        >
+          <a
+            href="#"
+            class="bg-primary text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+            >ALL</a
+          >
+          <a
+            class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+          >
+            MEAT SECTION
+          </a>
+          <a
+            class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+          >
+            SEAFOOD SECTION
+          </a>
+          <a
+            class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+          >
+            VEGETABLE SECTION
+          </a>
+          <a
+            class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+          >
+            FRUITS SECTION
+          </a>
+        </div>
+        <div
+          id="product-section"
+          class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 overflow-y-auto h-full pb-2 pt-3 gap-2"
+        >
+          <div
+            class="flex bg-white flex-col rounded-md border-[1px] border-meat overflow-hidden"
+          >
+            <div class="w-full h-[170px] overflow-hidden">
+              <img
+                src="../images/items/meat/pork-meat.png"
+                alt="pork-meat"
+                class="w-full bg-center"
+              />
+            </div>
+            <div
+              class="flex flex-col space-y-2 pt-4 px-2 justify-center items-center"
+            >
+              <h2 class="font-bold text-meat text-xl text-center">RIBSHACK</h2>
+
+              <span class="bg-meat py-1.5 px-5 text-white rounded-sm mx-auto"
+                >MEAT</span
+              >
+              <div class="space-x-1 text-lg text-yellow-500">
+                <span><ion-icon name="star"></ion-icon></span>
+                <span><ion-icon name="star"></ion-icon></span>
+                <span><ion-icon name="star"></ion-icon></span>
+                <span><ion-icon name="star"></ion-icon></span>
+                <span><ion-icon name="star"></ion-icon></span>
+              </div>
+            </div>
+          </div>
+          <div class="flex bg-white flex-col rounded-md">
+            <div class="w-full h-[170px] overflow-hidden">
+              <img
+                src="../images/items/meat/beef-tenderloin-roast.png"
+                alt="pork-meat"
+                class="w-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#E56E1E",
+            secondary: "#30373A",
+            meat: "#CA0000",
+            seafood: "#1B7080",
+            vegetable: "#91AB24",
+            fruits: "#EE3841",
+          },
+        },
+      },
+    };
+  </script>
+  <script src="../js/shop.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>
