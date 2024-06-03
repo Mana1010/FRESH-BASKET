@@ -10,7 +10,7 @@
     <title>Fresh Basket Shop</title>
   </head>
   <body>
-    <main class="w-full h-screen flex flex-col bg-[#F9F4F4]">
+    <main class="w-full h-screen flex flex-col bg-[#F9F4F4] pb-3 relative">
       <header
         class="px-3 flex justify-between items-center py-2.5 space-x-4 shadow-lg"
       >
@@ -63,7 +63,7 @@
           class="hidden md:flex"
         />
       </div>
-      <div class="flex flex-col space-y-2 px-5 flex-grow h-full pt-5">
+      <div class="flex flex-col space-y-2 px-2 flex-grow h-full pt-5">
         <div
           class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-1 items-center justify-center"
         >
@@ -73,21 +73,25 @@
             >ALL</a
           >
           <a
+            href="#meat-section"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             MEAT SECTION
           </a>
           <a
+            href="#seafood-section"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             SEAFOOD SECTION
           </a>
           <a
+            href="#vegetables-section"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             VEGETABLE SECTION
           </a>
           <a
+            href="#fruits-section"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             FRUITS SECTION
@@ -95,11 +99,21 @@
         </div>
         <div
           id="product-section"
-          class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 overflow-y-auto h-full pb-2 pt-3 gap-2"
+          class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 flex-grow pt-3 gap-x-2 gap-y-4"
         >
-          <div
-            class="flex bg-white flex-col rounded-md border-[1px] border-meat overflow-hidden"
+          <!-- ONE PRODUCT FOR REFERENCE -->
+          <!-- <div
+            class="flex bg-white flex-col rounded-md border-[1px] border-meat relative"
           >
+            <div
+              class="w-10 h-10 rounded-full p-1 bg-meat flex items-center justify-center absolute right-[-10px] top-[-10px]"
+            >
+              <img
+                src="../images/product-icon-category/meat-icon.png"
+                alt="meat"
+                width="25"
+              />
+            </div>
             <div class="w-full h-[170px] overflow-hidden">
               <img
                 src="../images/items/meat/pork-meat.png"
@@ -111,10 +125,6 @@
               class="flex flex-col space-y-2 pt-4 px-2 justify-center items-center"
             >
               <h2 class="font-bold text-meat text-xl text-center">RIBSHACK</h2>
-
-              <span class="bg-meat py-1.5 px-5 text-white rounded-sm mx-auto"
-                >MEAT</span
-              >
               <div class="space-x-1 text-lg text-yellow-500">
                 <span><ion-icon name="star"></ion-icon></span>
                 <span><ion-icon name="star"></ion-icon></span>
@@ -122,19 +132,41 @@
                 <span><ion-icon name="star"></ion-icon></span>
                 <span><ion-icon name="star"></ion-icon></span>
               </div>
+              <div class="flex flex-col items-center justify-center space-y-2">
+                <div class="flex items-center space-x-2">
+                  <button><ion-icon name="add-outline"></ion-icon></button>
+                  <div
+                    class="px-5 py-0.5 border-[1px] border-primary text-secondary rounded-sm"
+                  >
+                    19
+                  </div>
+                  <button><ion-icon name="remove-outline"></ion-icon></button>
+                </div>
+                <small>PER POUND</small>
+                <strong>25$/lbs</strong>
+              </div>
+              <div
+                class="flex items-center justify-center w-full space-x-2 pt-2"
+              >
+                <button
+                  class="bg-transparent rounded-sm border-[1px] border-primary px-2 py-1.5 text-secondary"
+                >
+                  ADD TO CART
+                </button>
+                <button class="rounded-sm bg-primary px-2 py-1.5 text-white">
+                  BUY NOW
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="flex bg-white flex-col rounded-md">
-            <div class="w-full h-[170px] overflow-hidden">
-              <img
-                src="../images/items/meat/beef-tenderloin-roast.png"
-                alt="pork-meat"
-                class="w-full object-cover"
-              />
-            </div>
-          </div>
+          </div> -->
+          <!-- ONE PRODUCT FOR REFERENCE -->
         </div>
       </div>
+      <button
+        class="back-to-top-btn fixed bottom-5 right-4 bg-secondary text-white text-xl p-2 rounded-md hidden"
+      >
+        <ion-icon name="arrow-up-outline"></ion-icon>
+      </button>
     </main>
   </body>
   <script>
