@@ -16,7 +16,9 @@ function submitForm(e) {
     icon: "success",
   });
 }
-
+function buli() {
+  alert("Gagana");
+}
 function handleUrlChange() {
   const currentUrl = location.href.split("#");
   const pathname = currentUrl.at(-1);
