@@ -8,6 +8,7 @@ const buttonMenu = document.querySelector("#button-menu");
 function backToTopFunc() {
   window.scrollTo(0, 0);
 }
+
 function submitForm(e) {
   e.preventDefault();
   Swal.fire({
@@ -15,9 +16,6 @@ function submitForm(e) {
     text: "Your Message successfully submitted",
     icon: "success",
   });
-}
-function buli() {
-  alert("Gagana");
 }
 function handleUrlChange() {
   const currentUrl = location.href.split("#");
@@ -32,6 +30,7 @@ function handleUrlChange() {
     }
   });
 }
+
 function showMainMenu() {
   if (menu.classList.contains("hidden")) {
     menu.classList.add("block");

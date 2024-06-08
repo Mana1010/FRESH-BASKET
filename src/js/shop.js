@@ -1,13 +1,12 @@
-import { products } from "../../db/product.js";
+import { productItems } from "../../db/product.js";
 const clearSearchBoxBTN = document.querySelector("#remove-search-button");
 const inputSearchBox = document.querySelector("#input-search-box");
 const backToTopBtn = document.querySelector(".back-to-top-btn");
-const ratings = document.querySelector("#ratings");
 const productSection = document.querySelector("#product-section");
+const paginationBtn = document.querySelectorAll("#pagination-btn-group > a");
 
-let productItems = [...products];
 function renderProducts(products) {
-  products.forEach((product) => {
+  products.map((product) => {
     productSection.innerHTML += `<div
       class="flex bg-white flex-col rounded-md border-[1px] border-[${product.themeColor}] relative pb-2 h-[400px]"
     >
@@ -92,8 +91,8 @@ function addOrder(id) {
       productItems[i].order++;
     }
   }
-  productSection.innerHTML = ``;
-  renderProducts(productItems);
+
+  displayProduct();
 }
 function subtractOrder(id) {
   for (let i = 0; i < productItems.length; i++) {
@@ -102,6 +101,8 @@ function subtractOrder(id) {
         productItems[i].order--;
       }
     }
+
+    displayProduct();
   }
 }
 window.subtractOrder = subtractOrder;
@@ -110,17 +111,73 @@ function backToTop() {
   window.scrollTo(0, 0);
 }
 
-async function displayProduct() {
-  const currentUrl = location.href.split("#");
-  const currenttSection = currentUrl.at(-1);
+export async function displayProduct() {
+  const btnColorsCategory = [
+    {
+      category: "",
+      color: "#E56E1E",
+    },
+    {
+      category: "meat",
+      color: "#CA0000",
+    },
+    {
+      category: "seafood",
+      color: "#1B7080",
+    },
+    {
+      category: "vegetable",
+      color: "#91AB24",
+    },
+    {
+      category: "fruit",
+      color: "#EE3841",
+    },
+  ];
+  const currentUrl = location.href.split(/[#|/]/);
+  console.log(currentUrl);
+  const currentSection =
+    currentUrl.at(-1).split("-")[0] !==
+    "http://127.0.0.1:5500/src/pages/store.html"
+      ? currentUrl.at(-2).split("-")[0]
+      : "";
   const filteredProduct = productItems.filter(
-    (product) => currenttSection.split("-")[0] === product.type
+    (product) => currentSection === product.type
   );
-
+  const updatedProducts = filteredProduct.length
+    ? filteredProduct
+    : productItems;
+  const updatedParams = +currentUrl.at(-1) - 1;
+  const currentSectionParams = updatedProducts.slice(
+    updatedParams * 8 === 0 ? 0 : updatedParams * 8,
+    +currentUrl.at(-1) * 8
+  );
+  for (const type of btnColorsCategory) {
+    if (type.category === currentSection) {
+      Array.from(paginationBtn).map((btn) => {
+        const getCategory =
+          btn.getAttribute("href").split("-")[0].slice(1)[0] === "/"
+            ? ""
+            : btn.getAttribute("href").split("-")[0].slice(1);
+        if (currentSection === getCategory) {
+          btn.classList.remove(`bg-[#93959A]`);
+          btn.classList.add(`bg-[${type.color}]`);
+        }
+      });
+    } else {
+      Array.from(paginationBtn).map((btn) => {
+        const getCategory = btn.getAttribute("href").split("-")[0].slice(1);
+        if (currentSection !== getCategory) {
+          btn.classList.remove(`bg-[${type.color}]`);
+          btn.classList.add(`bg-[#93959A]`);
+        }
+      });
+    }
+  }
   productSection.innerHTML = ``;
-  renderProducts(filteredProduct);
+  renderProducts(currentSectionParams);
 }
-renderProducts(productItems);
+displayProduct();
 backToTopBtn.addEventListener("click", backToTop);
 window.addEventListener("scroll", handleScrollPx);
 window.addEventListener("popstate", displayProduct);

@@ -65,33 +65,34 @@
       </div>
       <div class="flex flex-col space-y-2 px-2 flex-grow h-full pt-5">
         <div
+          id="pagination-btn-group"
           class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-1 items-center justify-center"
         >
           <a
-            href="#"
-            class="bg-primary text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
+            href="#/1"
+            class="bg-[#E56E1E] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
             >ALL</a
           >
           <a
-            href="#meat-section"
+            href="#meat-section/1"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             MEAT SECTION
           </a>
           <a
-            href="#seafood-section"
+            href="#seafood-section/1"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             SEAFOOD SECTION
           </a>
           <a
-            href="#vegetables-section"
+            href="#vegetable-section/1"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             VEGETABLE SECTION
           </a>
           <a
-            href="#fruits-section"
+            href="#fruit-section/1"
             class="bg-[#93959A] text-white py-2 rounded-sm flex items-center justify-center cursor-pointer"
           >
             FRUITS SECTION
@@ -101,6 +102,19 @@
           id="product-section"
           class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 flex-grow pt-3 gap-x-2 gap-y-4"
         ></div>
+        <footer
+          class="pagination flex justify-center items-center w-full p-2 space-x-1"
+        >
+          <button class="border-[1px] border-primary text-primary px-4 py-2">
+            1
+          </button>
+          <button class="border-[1px] border-primary text-primary px-4 py-2">
+            2
+          </button>
+          <button class="border-[1px] border-primary text-primary px-4 py-2">
+            3
+          </button>
+        </footer>
       </div>
 
       <button
