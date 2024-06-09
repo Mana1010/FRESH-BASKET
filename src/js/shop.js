@@ -4,7 +4,37 @@ const inputSearchBox = document.querySelector("#input-search-box");
 const backToTopBtn = document.querySelector(".back-to-top-btn");
 const productSection = document.querySelector("#product-section");
 const paginationBtn = document.querySelectorAll("#pagination-btn-group > a");
+const footerPagination = document.querySelector(".pagination");
 
+function reusableVariables() {
+  const currentUrl = location.href.split(/[#|/]/);
+
+  const currentSection =
+    currentUrl.at(-1).split("-")[0] !==
+    "http://127.0.0.1:5500/src/pages/store.html"
+      ? currentUrl.at(-2).split("-")[0]
+      : "";
+  const filteredProduct = productItems.filter(
+    (product) => currentSection === product.type
+  );
+  const updatedProducts = filteredProduct.length
+    ? filteredProduct
+    : productItems;
+  const updatedParams = +currentUrl.at(-1) - 1;
+  const currentSectionParams = updatedProducts.slice(
+    updatedParams * 8 === 0 ? 0 : updatedParams * 8,
+    +currentUrl.at(-1) * 8
+  );
+  const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 8);
+  return {
+    updatedParams,
+    piecesOfPaginationBtn,
+    currentSection,
+    filteredProduct,
+    currentSectionParams,
+  };
+}
+//This is a reusable function to use to render the products in web page
 function renderProducts(products) {
   products.map((product) => {
     productSection.innerHTML += `<div
@@ -31,6 +61,11 @@ function renderProducts(products) {
       >
         <h2 class="font-bold text-[${product.themeColor}] text-lg text-center">${product.name}</h2>
         <div id="ratings" class="space-x-1 text-lg text-yellow-500">
+        <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
+        <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
+        <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
+        <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
+        <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
         </div>
         <div class="flex flex-col items-center justify-center space-y-2">
           <div class="flex items-center space-x-2">
@@ -61,7 +96,27 @@ function renderProducts(products) {
     </div>`;
   });
 }
-
+function renderPaginationFooter() {
+  const { piecesOfPaginationBtn, updatedParams } = reusableVariables();
+  const currentSecondUrl = location.href.split("").slice(0, -1).join("");
+  new Array(piecesOfPaginationBtn).fill(0).map((product, index) => {
+    // footerPagination.innerHTML += "<button class="border-[1px] border-primary text-primary px-4 py-2">1</button>";
+    const createBtn = document.createElement("a");
+    createBtn.textContent = index + 1;
+    createBtn.classList.add(
+      `border-[1px]`,
+      `border-primary`,
+      `${updatedParams === index ? "text-white" : "text-primary"}`,
+      `${updatedParams === index ? "bg-primary" : "bg-transparent"}`,
+      `px-4`,
+      `py-2`
+    );
+    createBtn.setAttribute("href", `${currentSecondUrl}${index + 1}`);
+    // createBtn.href = ``
+    footerPagination.appendChild(createBtn);
+  });
+}
+// This two function is for the search box
 function clearSearchBox() {
   inputSearchBox.value = "";
 }
@@ -75,7 +130,7 @@ function trackChanges(e) {
   }
 }
 
-//FETCH DATA
+//This function is for the arrow button that it will appear when the user scrolled down the page and when the user clicked it the web page will automatically scrolled up on its own
 function handleScrollPx() {
   if (window.scrollY >= 200) {
     backToTopBtn.classList.add("flex");
@@ -86,19 +141,22 @@ function handleScrollPx() {
   }
 }
 function addOrder(id) {
-  for (let i = 0; i < productItems.length; i++) {
-    if (productItems[i].id == id) {
-      productItems[i].order++;
+  const { currentSectionParams } = reusableVariables();
+  for (let i = 0; i < currentSectionParams.length; i++) {
+    if (currentSectionParams[i].id == id) {
+      currentSectionParams[i].order++;
     }
   }
 
   displayProduct();
 }
 function subtractOrder(id) {
-  for (let i = 0; i < productItems.length; i++) {
-    if (productItems[i].id == id) {
-      if (productItems[i].order > 0) {
-        productItems[i].order--;
+  const { currentSectionParams } = reusableVariables();
+  console.log(currentSectionParams.length);
+  for (let i = 0; i < currentSectionParams.length; i++) {
+    if (currentSectionParams[i].id == id) {
+      if (currentSectionParams[i].order > 0) {
+        currentSectionParams[i].order--;
       }
     }
 
@@ -110,8 +168,8 @@ window.addOrder = addOrder;
 function backToTop() {
   window.scrollTo(0, 0);
 }
-
 export async function displayProduct() {
+  const { currentSection, currentSectionParams } = reusableVariables();
   const btnColorsCategory = [
     {
       category: "",
@@ -134,24 +192,6 @@ export async function displayProduct() {
       color: "#EE3841",
     },
   ];
-  const currentUrl = location.href.split(/[#|/]/);
-  console.log(currentUrl);
-  const currentSection =
-    currentUrl.at(-1).split("-")[0] !==
-    "http://127.0.0.1:5500/src/pages/store.html"
-      ? currentUrl.at(-2).split("-")[0]
-      : "";
-  const filteredProduct = productItems.filter(
-    (product) => currentSection === product.type
-  );
-  const updatedProducts = filteredProduct.length
-    ? filteredProduct
-    : productItems;
-  const updatedParams = +currentUrl.at(-1) - 1;
-  const currentSectionParams = updatedProducts.slice(
-    updatedParams * 8 === 0 ? 0 : updatedParams * 8,
-    +currentUrl.at(-1) * 8
-  );
   for (const type of btnColorsCategory) {
     if (type.category === currentSection) {
       Array.from(paginationBtn).map((btn) => {
@@ -175,6 +215,8 @@ export async function displayProduct() {
     }
   }
   productSection.innerHTML = ``;
+  footerPagination.innerHTML = ``;
+  renderPaginationFooter();
   renderProducts(currentSectionParams);
 }
 displayProduct();
