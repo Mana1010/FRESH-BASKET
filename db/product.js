@@ -10,6 +10,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 6,
@@ -70,6 +75,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 7,
@@ -82,6 +88,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 8,
@@ -94,6 +101,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 9,
@@ -106,6 +114,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 10,
@@ -118,6 +127,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 11,
@@ -130,6 +140,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 12,
@@ -142,6 +153,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 13,
@@ -154,6 +166,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 14,
@@ -166,6 +179,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#CA0000",
     icon: "../images/product-icon-category/meat-icon.png",
+    isPerPound: false,
   },
   {
     id: 15,
@@ -178,6 +192,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 16,
@@ -190,6 +205,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 17,
@@ -202,6 +218,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 18,
@@ -214,6 +231,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 19,
@@ -226,6 +244,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 20,
@@ -238,6 +257,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 21,
@@ -250,6 +270,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 22,
@@ -262,6 +283,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 23,
@@ -274,6 +296,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 24,
@@ -286,6 +309,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 25,
@@ -298,6 +322,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 26,
@@ -310,6 +335,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 27,
@@ -322,6 +348,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 28,
@@ -334,6 +361,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#1B7080",
     icon: "../images/product-icon-category/seafood-icon.png",
+    isPerPound: false,
   },
   {
     id: 29,
@@ -346,6 +374,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 30,
@@ -358,6 +387,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 31,
@@ -370,6 +400,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 32,
@@ -382,6 +413,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 33,
@@ -394,6 +426,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 34,
@@ -406,6 +439,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 35,
@@ -418,6 +452,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 36,
@@ -430,6 +465,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 37,
@@ -442,6 +478,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 38,
@@ -454,6 +491,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 39,
@@ -466,6 +504,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 40,
@@ -478,6 +517,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 41,
@@ -490,6 +530,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 42,
@@ -502,6 +543,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 43,
@@ -514,6 +556,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 44,
@@ -526,6 +569,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 45,
@@ -538,6 +582,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 46,
@@ -550,6 +595,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 47,
@@ -562,6 +608,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 48,
@@ -574,6 +621,7 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
   {
     id: 49,
@@ -586,5 +634,6 @@ export let productItems = [
     orderDate: null,
     themeColor: "#91AB24",
     icon: "../images/product-icon-category/vegetables-icon.png",
+    isPerPound: false,
   },
 ];

@@ -22,10 +22,10 @@ function reusableVariables() {
     : productItems;
   const updatedParams = +currentUrl.at(-1) - 1;
   const currentSectionParams = updatedProducts.slice(
-    updatedParams * 8 === 0 ? 0 : updatedParams * 8,
-    +currentUrl.at(-1) * 8
+    updatedParams * 7 === 0 ? 0 : updatedParams * 7,
+    +currentUrl.at(-1) * 7
   );
-  const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 8);
+  const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 7);
   return {
     updatedParams,
     piecesOfPaginationBtn,
@@ -99,8 +99,7 @@ function renderProducts(products) {
 function renderPaginationFooter() {
   const { piecesOfPaginationBtn, updatedParams } = reusableVariables();
   const currentSecondUrl = location.href.split("").slice(0, -1).join("");
-  new Array(piecesOfPaginationBtn).fill(0).map((product, index) => {
-    // footerPagination.innerHTML += "<button class="border-[1px] border-primary text-primary px-4 py-2">1</button>";
+  new Array(piecesOfPaginationBtn).fill(0).map((_, index) => {
     const createBtn = document.createElement("a");
     createBtn.textContent = index + 1;
     createBtn.classList.add(
@@ -112,7 +111,6 @@ function renderPaginationFooter() {
       `py-2`
     );
     createBtn.setAttribute("href", `${currentSecondUrl}${index + 1}`);
-    // createBtn.href = ``
     footerPagination.appendChild(createBtn);
   });
 }
@@ -129,7 +127,21 @@ function trackChanges(e) {
     clearSearchBoxBTN.classList.remove("flex");
   }
 }
-
+function searchProducts(e) {
+  const { currentSectionParams } = reusableVariables();
+  const product = e.target.value.trim();
+  const searchedItems = productItems.filter((item) =>
+    item.name.toLowerCase().includes(product.toLowerCase())
+  );
+  window.location.href = "http://127.0.0.1:5500/src/pages/store.html#/1";
+  if (!product.length) {
+    renderPaginationFooter();
+  } else {
+    footerPagination.innerHTML = "";
+  }
+  productSection.innerHTML = "";
+  renderProducts(product.length ? searchedItems : currentSectionParams);
+}
 //This function is for the arrow button that it will appear when the user scrolled down the page and when the user clicked it the web page will automatically scrolled up on its own
 function handleScrollPx() {
   if (window.scrollY >= 200) {
@@ -152,16 +164,14 @@ function addOrder(id) {
 }
 function subtractOrder(id) {
   const { currentSectionParams } = reusableVariables();
-  console.log(currentSectionParams.length);
   for (let i = 0; i < currentSectionParams.length; i++) {
     if (currentSectionParams[i].id == id) {
       if (currentSectionParams[i].order > 0) {
         currentSectionParams[i].order--;
       }
     }
-
-    displayProduct();
   }
+  displayProduct();
 }
 window.subtractOrder = subtractOrder;
 window.addOrder = addOrder;
@@ -220,6 +230,7 @@ export async function displayProduct() {
   renderProducts(currentSectionParams);
 }
 displayProduct();
+inputSearchBox.addEventListener("input", searchProducts);
 backToTopBtn.addEventListener("click", backToTop);
 window.addEventListener("scroll", handleScrollPx);
 window.addEventListener("popstate", displayProduct);
