@@ -22,10 +22,10 @@ function reusableVariables() {
     : productItems;
   const updatedParams = +currentUrl.at(-1) - 1;
   const currentSectionParams = updatedProducts.slice(
-    updatedParams * 7 === 0 ? 0 : updatedParams * 7,
-    +currentUrl.at(-1) * 7
+    updatedParams * 8 === 0 ? 0 : updatedParams * 8,
+    +currentUrl.at(-1) * 8
   );
-  const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 7);
+  const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 8);
   return {
     updatedParams,
     piecesOfPaginationBtn,
@@ -38,10 +38,14 @@ function reusableVariables() {
 function renderProducts(products) {
   products.map((product) => {
     productSection.innerHTML += `<div
-      class="flex bg-white flex-col rounded-md border-[1px] border-[${product.themeColor}] relative pb-2 h-[400px]"
+      class="flex bg-white flex-col rounded-md border-[1px] border-[${
+        product.themeColor
+      }] relative pb-2 h-[400px]"
     >
       <div
-        class="w-8 h-8 rounded-full p-1 bg-[${product.themeColor}] flex items-center justify-center absolute left-[40%]  top-[-10px] z-[999]"
+        class="w-8 h-8 rounded-full p-1 bg-[${
+          product.themeColor
+        }] flex items-center justify-center absolute left-[40%]  top-[-10px] z-[999]"
       >
         <img
           src="${product.icon}"
@@ -59,7 +63,9 @@ function renderProducts(products) {
       <div
         class="flex flex-col space-y-2 pt-4 px-2 justify-center items-center"
       >
-        <h2 class="font-bold text-[${product.themeColor}] text-lg text-center">${product.name}</h2>
+        <h2 class="font-bold text-[${
+          product.themeColor
+        }] text-lg text-center">${product.name}</h2>
         <div id="ratings" class="space-x-1 text-lg text-yellow-500">
         <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
         <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
@@ -69,16 +75,22 @@ function renderProducts(products) {
         </div>
         <div class="flex flex-col items-center justify-center space-y-2">
           <div class="flex items-center space-x-2">
-            <button onclick="addOrder(${product.id})"><ion-icon name="add-outline"></ion-icon></button>
+            <button onclick="addOrder(${
+              product.id
+            })"><ion-icon name="add-outline"></ion-icon></button>
             <div
               class="px-5 py-0.5 border-[1px] border-primary text-secondary rounded-sm"
             >
               ${product.order}
             </div>
-            <button onclick="subtractOrder(${product.id})"><ion-icon name="remove-outline"></ion-icon></button>
+            <button onclick="subtractOrder(${
+              product.id
+            })"><ion-icon name="remove-outline"></ion-icon></button>
           </div>
-          <small>PER POUND</small>
-          <strong>${product.price}$/lb</strong>
+          <small>${product.isPerPound ? "PER POUND" : "PER EACH"}</small>
+          <strong>${product.price}$/${
+      product.isPerPound ? "lb" : "each"
+    }</strong>
         </div>
         <div
           class="flex items-center justify-center w-full space-x-2 pt-2"
@@ -152,11 +164,14 @@ function handleScrollPx() {
     backToTopBtn.classList.remove("flex");
   }
 }
+let price = 0;
 function addOrder(id) {
   const { currentSectionParams } = reusableVariables();
   for (let i = 0; i < currentSectionParams.length; i++) {
     if (currentSectionParams[i].id == id) {
       currentSectionParams[i].order++;
+      currentSectionParams[i].price += currentSectionParams[i].basePrice;
+      currentSectionParams[i].price = +currentSectionParams[i].price.toFixed(2);
     }
   }
 
@@ -166,8 +181,11 @@ function subtractOrder(id) {
   const { currentSectionParams } = reusableVariables();
   for (let i = 0; i < currentSectionParams.length; i++) {
     if (currentSectionParams[i].id == id) {
-      if (currentSectionParams[i].order > 0) {
+      if (currentSectionParams[i].order > 1) {
         currentSectionParams[i].order--;
+        currentSectionParams[i].price -= currentSectionParams[i].basePrice;
+        currentSectionParams[i].price =
+          +currentSectionParams[i].price.toFixed(2);
       }
     }
   }
