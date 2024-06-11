@@ -54,7 +54,7 @@ function renderProducts(products) {
         <img
           src="${product.imgUrl}"
           alt="${product.type}"
-          class="w-full object-cover"
+          class="w-full"
         />
       </div>
       <div
@@ -63,7 +63,7 @@ function renderProducts(products) {
         <h2 class="font-bold text-[${
           product.themeColor
         }] text-lg text-center">${product.name}</h2>
-        <div id="ratings" class="space-x-1 text-lg text-yellow-500">
+        <div class="space-x-1 text-lg">
         <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
         <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
         <span class="text-yellow-500 text-lg"><ion-icon name="star"></ion-icon></span>
@@ -85,7 +85,7 @@ function renderProducts(products) {
             })"><ion-icon name="remove-outline"></ion-icon></button>
           </div>
           <small>${product.isPerPound ? "PER POUND" : "PER EACH"}</small>
-          <strong>${product.price}$/${
+          <strong class="text-secondary">${product.price}$/${
       product.isPerPound ? "lb" : "each"
     }</strong>
         </div>
@@ -151,6 +151,7 @@ function searchProducts(e) {
   }
   productSection.innerHTML = "";
   renderProducts(product.length ? searchedItems : currentSectionParams);
+  return { searchedItems };
 }
 //This function is for the arrow button that it will appear when the user scrolled down the page and when the user clicked it the web page will automatically scrolled up on its own
 function handleScrollPx() {
@@ -249,7 +250,10 @@ export async function displayProduct() {
 function addToCartProduct(id) {
   const { currentSectionParams } = reusableVariables();
   const payload = currentSectionParams.find((product) => product.id === id);
-  const updatedPayload = { ...payload, addedCartDate: new Date() };
+  const updatedPayload = {
+    ...payload,
+    addedCartDate: Date.now(),
+  };
   const getItem = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [];

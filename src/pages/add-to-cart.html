@@ -72,10 +72,48 @@
         </div>
       </header>
       <div class="flex-grow flex flex-col space-y-2 w-full p-2">
-        <h3 class="font-extrabold text-3xl text-primary">
-          <span class="text-secondary">YOUR</span> CART
-        </h3>
-        <div class="cart-page flex-grow"></div>
+        <header class="justify-between flex">
+          <div class="flex items-center space-x-2">
+            <span
+              class="font-extrabold md:text-5xl flex items-center text-secondary text-2xl"
+              ><ion-icon name="cart"></ion-icon
+            ></span>
+            <h3 class="font-extrabold md:text-4xl text-primary text-xl">
+              <span class="text-secondary">YOUR SHOPPING</span> CART
+            </h3>
+          </div>
+          <div class="flex space-x-2 items-center">
+            <select
+              value="by-latest"
+              class="sort-by-select border-primary border-[1px] rounded-sm text-secondary px-1.5 py-1"
+            >
+              <option value="by-latest">Sort by Latest</option>
+              <option value="by-oldest">Sort by Oldest</option>
+            </select>
+            <div class="flex items-center space-x-1">
+              <span class="text-secondary flex items-center justify-center"
+                ><ion-icon name="pricetag"></ion-icon
+              ></span>
+              <h3 class="text-secondary items-count">50</h3>
+            </div>
+          </div>
+        </header>
+        <div
+          class="cart-page w-full grid-cols-1 md:grid-cols-2 gap-2 px-5 overflow-y-auto py-3"
+        ></div>
+        <div
+          class="empty-page flex-grow items-center justify-center flex-col space-y-2 hidden"
+        >
+          <img src="../images/empty-cart.png" width="170" alt="empty-cart" />
+          <h2 class="text-secondary text-2xl font-bold">
+            NO ITEMS IN YOUR CART?
+          </h2>
+          <a
+            href="./store.html#/1"
+            class="underline-offset-4 underline decoration-primary text-primary"
+            >SHOP HERE</a
+          >
+        </div>
       </div>
     </main>
   </body>
