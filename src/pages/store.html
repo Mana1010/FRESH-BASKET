@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="icon" href="/src/images/shopping-bag.png" type="image/png" />
     <link rel="stylesheet" href="../styles/style.css" />
 
-    <title>Fresh Basket Shop</title>
+    <title>Fresh Basket | Shop</title>
   </head>
   <body>
     <main class="w-full h-screen flex flex-col bg-[#F9F4F4] pb-3 relative">
@@ -58,7 +58,7 @@
               ><ion-icon name="cart-outline"></ion-icon
             ></span>
             <div
-              class="h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
+              class="add-to-cart-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.6rem]"
             >
               0
             </div>
@@ -71,7 +71,7 @@
               ><ion-icon name="timer-outline"></ion-icon
             ></span>
             <div
-              class="h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
+              class="order-history-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.6rem]"
             >
               0
             </div>
@@ -132,7 +132,7 @@
           class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 flex-grow pt-3 gap-x-2 gap-y-4"
         ></div>
         <footer
-          class="pagination flex justify-center items-center w-full p-2 space-x-1"
+          class="pagination flex justify-center items-center w-full p-2 space-x-1 flex-wrap gap-y-1 md:gap-0"
         ></footer>
       </div>
 
@@ -160,7 +160,7 @@
     };
   </script>
   <script type="module" src="../js/shop.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script
     type="module"
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

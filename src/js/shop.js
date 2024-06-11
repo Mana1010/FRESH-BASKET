@@ -1,4 +1,5 @@
 import { productItems } from "../../db/product.js";
+
 const clearSearchBoxBTN = document.querySelector("#remove-search-button");
 const inputSearchBox = document.querySelector("#input-search-box");
 const backToTopBtn = document.querySelector(".back-to-top-btn");
@@ -8,12 +9,7 @@ const footerPagination = document.querySelector(".pagination");
 
 function reusableVariables() {
   const currentUrl = location.href.split(/[#|/]/);
-
-  const currentSection =
-    currentUrl.at(-1).split("-")[0] !==
-    "http://127.0.0.1:5500/src/pages/store.html"
-      ? currentUrl.at(-2).split("-")[0]
-      : "";
+  const currentSection = currentUrl.at(-2).split("-")[0];
   const filteredProduct = productItems.filter(
     (product) => currentSection === product.type
   );
@@ -34,6 +30,7 @@ function reusableVariables() {
     currentSectionParams,
   };
 }
+
 //This is a reusable function to use to render the products in web page
 function renderProducts(products) {
   products.map((product) => {
@@ -95,10 +92,11 @@ function renderProducts(products) {
         <div
           class="flex items-center justify-center w-full space-x-2 pt-2"
         >
-        <button id="order-now" class="rounded-sm bg-primary px-2 py-1.5 text-white text-sm">
+        <button id="order-btn"  class="rounded-sm bg-primary px-2 py-1.5 text-white text-sm">
         ORDER NOW
       </button>
           <button
+          onclick="addToCartProduct(${product.id})"
             class="bg-transparent rounded-sm border-[1px] border-primary px-2 py-1.5 text-secondary text-sm"
           >
             ADD TO CART
@@ -247,6 +245,42 @@ export async function displayProduct() {
   renderPaginationFooter();
   renderProducts(currentSectionParams);
 }
+
+function addToCartProduct(id) {
+  const { currentSectionParams } = reusableVariables();
+  const payload = currentSectionParams.find((product) => product.id === id);
+  const updatedPayload = { ...payload, addedCartDate: new Date() };
+  const getItem = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+  console.log(getItem);
+  localStorage.setItem("cart", JSON.stringify([...getItem, updatedPayload]));
+  document.querySelector(".add-to-cart-length").textContent = JSON.parse(
+    localStorage.getItem("cart")
+  ).length;
+  Swal.fire({
+    color: "#30373A",
+    imageUrl: updatedPayload.imgUrl,
+    imageWidth: 150,
+    imageHeight: 150,
+    title: "Thank you",
+    text: `${updatedPayload.name} successfully added to your cart`,
+    imageAlt: updatedPayload.name,
+    icon: "success",
+  });
+}
+const getExistingCartItems = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
+
+const getExistingHistoryItems = localStorage.getItem("history")
+  ? JSON.parse(localStorage.getItem("history"))
+  : [];
+document.querySelector(".add-to-cart-length").textContent =
+  getExistingCartItems.length;
+document.querySelector(".order-history-length").textContent =
+  getExistingHistoryItems.length;
+window.addToCartProduct = addToCartProduct;
 displayProduct();
 inputSearchBox.addEventListener("input", searchProducts);
 backToTopBtn.addEventListener("click", backToTop);
