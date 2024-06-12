@@ -2,7 +2,9 @@ const cartPage = document.querySelector(".cart-page");
 const emptyPage = document.querySelector(".empty-page");
 const itemsCount = document.querySelector(".items-count");
 const sortBySelect = document.querySelector(".sort-by-select");
-const getProducts = localStorage.getItem("cart")
+const searchBox = document.querySelector("#input-search-box");
+
+let getProducts = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
 
@@ -18,9 +20,9 @@ function renderAddedCartProducts(cartProducts) {
                     ).toLocaleString()}</h6>
                     <div
                       style="box-shadow: 0 0 3px black"
-                      class="w-full flex items-center rounded-md relative justify-between lg:h-[150px]"
+                      class="w-full flex items-center rounded-md relative justify-between lg:h-[150px] flex-col lg:flex-row"
                     >
-                      <div class="flex space-x-2">
+                      <div class="flex space-x-2 flex-col lg:flex-row lg:justify-start justify-center items-center space-y-2 lg:space-y-0">
                         <div
                           class="w-8 h-8 rounded-full p-1 bg-[${
                             cartProduct.themeColor
@@ -66,7 +68,7 @@ function renderAddedCartProducts(cartProducts) {
                         </div>
                       </div>
                       <div
-                        class="pr-2 flex flex-col justify-end items-end h-full py-1.5"
+                        class="pr-2 flex flex-col lg:justify-end lg:items-end justify-center items-center h-full py-1.5"
                       >
                         <p class="text-secondary text-lg font-bold">x${
                           cartProduct.order
@@ -76,6 +78,7 @@ function renderAddedCartProducts(cartProducts) {
                         </h2>
                         <div class="flex space-x-2">
                           <button
+                          onclick="removeCartProduct(${cartProduct.id})"
                             class="py-2 px-3 rounded-sm text-secondary border-[${
                               cartProduct.themeColor
                             }] border-[1px] font-bold"
@@ -102,7 +105,6 @@ function renderAddedCartProducts(cartProducts) {
   itemsCount.textContent = getProducts.length;
 }
 function sortBy(e) {
-  console.log("Hello");
   const value = e.target.value;
   cartPage.innerHTML = ``;
   if (value === "by-latest") {
@@ -117,5 +119,24 @@ function sortBy(e) {
     renderAddedCartProducts(sortByOldest);
   }
 }
+function removeCartProduct(id) {
+  const updatedProducts = getProducts.filter((product) => product.id !== id);
+  localStorage.setItem("cart", JSON.stringify(updatedProducts));
+  getProducts = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+  cartPage.innerHTML = ``;
+  renderAddedCartProducts(getProducts);
+}
+function searchProduct(e) {
+  const searchName = e.target.value.trim();
+  const filteredSearchName = getProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchName.toLowerCase())
+  );
+  console.log(filteredSearchName);
+  cartPage.innerHTML = ``;
+  renderAddedCartProducts(filteredSearchName);
+}
 renderAddedCartProducts(getProducts);
+searchBox.addEventListener("input", searchProduct);
 sortBySelect.addEventListener("input", sortBy);

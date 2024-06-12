@@ -151,7 +151,6 @@ function searchProducts(e) {
   }
   productSection.innerHTML = "";
   renderProducts(product.length ? searchedItems : currentSectionParams);
-  return { searchedItems };
 }
 //This function is for the arrow button that it will appear when the user scrolled down the page and when the user clicked it the web page will automatically scrolled up on its own
 function handleScrollPx() {
@@ -258,7 +257,7 @@ function addToCartProduct(id) {
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
   console.log(getItem);
-  localStorage.setItem("cart", JSON.stringify([...getItem, updatedPayload]));
+  localStorage.setItem("cart", JSON.stringify([updatedPayload, ...getItem]));
   document.querySelector(".add-to-cart-length").textContent = JSON.parse(
     localStorage.getItem("cart")
   ).length;
