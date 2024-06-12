@@ -52,7 +52,9 @@
             href="check-out.html"
             class="relative flex items-center justify-center text-secondary"
           >
-            <span class="text-3xl"><ion-icon name="bag-check"></ion-icon></span>
+            <span class="text-3xl"
+              ><ion-icon name="bag-check-outline"></ion-icon
+            ></span>
             <div
               class="checkout-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
             >
@@ -125,6 +127,19 @@
             class="underline-offset-4 underline decoration-primary text-primary"
             >SHOP HERE</a
           >
+        </div>
+        <div
+          class="no-search-found-page flex-grow items-center justify-center flex-col space-y-2 w-full h-full hidden"
+        >
+          <img
+            src="../images/no-search-found.png"
+            width="170"
+            alt="no-search-found"
+          />
+          <h2 class="text-secondary text-2xl font-bold">
+            You have not added out this item named
+            <span class="keyword text-primary font-bold"></span>
+          </h2>
         </div>
       </div>
     </main>

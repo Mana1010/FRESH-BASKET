@@ -3,11 +3,10 @@ const emptyPage = document.querySelector(".empty-page");
 const itemsCount = document.querySelector(".items-count");
 const sortBySelect = document.querySelector(".sort-by-select");
 const searchBox = document.querySelector("#input-search-box");
-
+const noSearchFound = document.querySelector(".no-search-found-page");
 let getProducts = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
-
 function renderAddedCartProducts(cartProducts) {
   if (cartProducts.length) {
     emptyPage.style.display = "none";
@@ -78,16 +77,19 @@ function renderAddedCartProducts(cartProducts) {
                         </h2>
                         <div class="flex space-x-2">
                           <button
-                          onclick="removeCartProduct(${cartProduct.id})"
-                            class="py-2 px-3 rounded-sm text-secondary border-[${
+                         ${cartProduct.isCheckOut && "disabled='disabled'"}
+                          onclick="removeCartProduct(${
+                            cartProduct.addToCartId
+                          })"
+                            class="py-2 px-3 rounded-sm text-secondary text-sm border-[${
                               cartProduct.themeColor
                             }] border-[1px] font-bold"
                           >
                             Remove
                           </button>
                           <button
-                          onclick="checkOut(${cartProduct.id})"
-                            class="py-2 px-3 rounded-sm ${
+                          onclick="checkOut(${cartProduct.addToCartId})"
+                            class="py-2 px-3 rounded-sm text-sm ${
                               cartProduct.isCheckOut
                                 ? `border-[1px] border-[${cartProduct.themeColor}] text-secondary`
                                 : `bg-[${cartProduct.themeColor}] text-white`
@@ -126,8 +128,10 @@ function sortBy(e) {
     renderAddedCartProducts(sortByOldest);
   }
 }
-function removeCartProduct(id) {
-  const updatedProducts = getProducts.filter((product) => product.id !== id);
+function removeCartProduct(addToCartId) {
+  const updatedProducts = getProducts.filter(
+    (product) => product.addToCartId !== addToCartId
+  );
   localStorage.setItem("cart", JSON.stringify(updatedProducts));
   getProducts = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
@@ -135,9 +139,9 @@ function removeCartProduct(id) {
   cartPage.innerHTML = ``;
   renderAddedCartProducts(getProducts);
 }
-function checkOut(id) {
+function checkOut(addToCartId) {
   const checkOutItems = getProducts.map((product) => {
-    if (product.id === id) {
+    if (product.addToCartId === addToCartId) {
       return {
         ...product,
         isCheckOut: !product.isCheckOut,
@@ -159,8 +163,16 @@ function searchProduct(e) {
   const filteredSearchName = getProducts.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
-  cartPage.innerHTML = ``;
-  renderAddedCartProducts(filteredSearchName);
+  if (!filteredSearchName.length) {
+    document.querySelector(".keyword").textContent = `"${searchName}"`;
+    noSearchFound.style.display = "flex";
+    cartPage.style.display = "none";
+  } else {
+    noSearchFound.style.display = "none";
+    cartPage.style.display = "grid";
+    cartPage.innerHTML = ``;
+    renderAddedCartProducts(filteredSearchName);
+  }
 }
 function renderCheckOutLength(checkOutProducts) {
   const filteredProduct = checkOutProducts.filter(
@@ -169,6 +181,7 @@ function renderCheckOutLength(checkOutProducts) {
   document.querySelector(".checkout-length").textContent =
     filteredProduct.length;
 }
+
 renderCheckOutLength(getProducts);
 renderAddedCartProducts(getProducts);
 searchBox.addEventListener("input", searchProduct);

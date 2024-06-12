@@ -131,11 +131,28 @@
           id="product-section"
           class="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 flex-grow pt-3 gap-x-2 gap-y-4"
         ></div>
+        <div
+          class="no-search-found-page flex-grow items-center justify-center flex-col space-y-2 hidden"
+        >
+          <img
+            src="../images/no-search-found.png"
+            width="170"
+            alt="empty-cart"
+          />
+          <h2 class="text-secondary text-2xl font-bold">
+            We have no product named
+            <span class="keyword text-primary font-bold"></span>
+          </h2>
+          <a
+            href="./store.html#/1"
+            class="underline-offset-4 underline decoration-primary text-primary"
+            >SHOP HERE</a
+          >
+        </div>
         <footer
           class="pagination flex justify-center items-center w-full p-2 space-x-1 flex-wrap gap-y-1 md:gap-0"
         ></footer>
       </div>
-
       <button
         class="back-to-top-btn fixed bottom-5 right-4 bg-secondary text-white text-xl p-2 rounded-md hidden"
       >

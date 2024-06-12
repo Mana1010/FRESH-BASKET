@@ -245,28 +245,35 @@ export async function displayProduct() {
   renderPaginationFooter();
   renderProducts(currentSectionParams);
 }
-const checkOutId = [];
-const randomChar =
-  "2329I*&^HfkFMVNEOSdjfdmvcfkrfdvlerprtu(*)~``~6*&^$$^Jddfndfnrgkvkdffr313!@#$%%^&*(()*))%&!@#plvm<>?,.defx3sdawhsdjherkoomskdfm12254693873234394";
-
-for (let i = 0; i < 10; i++) {
-  const randomize = Math.floor(Math.random() * randomChar.length);
-  checkOutId.push(randomChar[randomize]);
+function randomCode() {
+  const checkOutId = [];
+  const addToCart = [];
+  const randomChar =
+    "3354247132423243545753457678798975576879898243435468897867562232443404934";
+  for (let i = 0; i < 10; i++) {
+    const randomize = Math.floor(Math.random() * randomChar.length);
+    const randomize2 = Math.floor(Math.random() * randomChar.length);
+    checkOutId.push(randomChar[randomize]);
+    addToCart.push(randomChar[randomize2]);
+  }
+  return { checkOutId, addToCart };
 }
-console.log(checkOutId.join(""));
+
 function addToCartProduct(id) {
+  const { checkOutId, addToCart } = randomCode();
   const { currentSectionParams } = reusableVariables();
   const payload = currentSectionParams.find((product) => product.id === id);
+
   const updatedPayload = {
     ...payload,
-    checkOutId: checkOutId.join(""),
+    addToCartId: +addToCart.join(""),
+    checkOutId: +checkOutId.join(""),
     addedCartDate: Date.now(),
     isCheckOut: false,
   };
   const getItem = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
-  console.log(getItem);
   localStorage.setItem("cart", JSON.stringify([updatedPayload, ...getItem]));
   document.querySelector(".add-to-cart-length").textContent = JSON.parse(
     localStorage.getItem("cart")
