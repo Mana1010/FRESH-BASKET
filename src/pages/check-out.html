@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/src/images/shopping-bag.png" type="image/png" />
-    <title>Fresh Basket | Add to Cart</title>
+    <title>Fresh Basket | Checkout</title>
   </head>
   <body>
     <main class="flex flex-col w-full h-screen">
@@ -36,7 +36,7 @@
             <input
               id="input-search-box"
               type="text"
-              placeholder="Search your cart"
+              placeholder="Search your checkout"
               class="bg-transparent px-3 outline-none flex-grow text-secondary placeholder:font-normal font-bold overflow-x-auto"
             />
             <button
@@ -49,12 +49,14 @@
         </div>
         <div class="flex space-x-2 items-center">
           <a
-            href="check-out.html"
+            href="add-to-cart.html"
             class="relative flex items-center justify-center text-secondary"
           >
-            <span class="text-3xl"><ion-icon name="bag-check"></ion-icon></span>
+            <span class="text-3xl"
+              ><ion-icon name="cart-outline"></ion-icon
+            ></span>
             <div
-              class="checkout-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
+              class="add-to-cart-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
             >
               0
             </div>
@@ -87,31 +89,31 @@
           <div class="flex items-center space-x-2">
             <span
               class="font-extrabold md:text-5xl flex items-center text-secondary text-2xl"
-              ><ion-icon name="cart"></ion-icon
+              ><ion-icon name="bag-check"></ion-icon
             ></span>
             <h3 class="font-extrabold md:text-4xl text-primary text-xl">
-              <span class="text-secondary">YOUR SHOPPING</span> CART
+              <span class="text-secondary">YOUR </span> CHECKOUT
             </h3>
           </div>
           <div class="flex space-x-2 items-center">
-            <select
-              value="by-latest"
-              class="sort-by-select border-primary border-[1px] rounded-sm text-secondary px-1.5 py-1"
+            <!-- <button
+              class="bg-primary text-secondary space-x-1 px-2.5 py-2 flex items-center justify-center"
             >
-              <option value="by-latest">Sort by Latest</option>
-              <option value="by-oldest">Sort by Oldest</option>
-            </select>
-            <div class="flex items-center space-x-1">
-              <span
-                class="text-secondary flex items-center justify-center text-xl"
-                ><ion-icon name="cart-outline"></ion-icon
+              <span class="flex items-center justify-center"
+                ><ion-icon name="cash-outline"></ion-icon
               ></span>
-              <h3 class="text-secondary items-count text-lg"></h3>
+              <span>8888</span>
+            </button> -->
+            <div>
+              <span class="text-secondary font-bold text-lg"
+                >Total Amount:
+              </span>
+              <span class="total-amount text-secondary text-lg">0$</span>
             </div>
           </div>
         </header>
         <div
-          class="cart-page w-full grid-cols-1 md:grid-cols-2 gap-2 px-5 py-3"
+          class="checkout-page w-full grid-cols-1 md:grid-cols-2 gap-2 px-5 py-3"
         ></div>
         <div
           class="empty-page flex-grow items-center justify-center flex-col space-y-2 hidden"
@@ -141,7 +143,7 @@
       },
     };
   </script>
-  <script src="../js/add-to-cart.js"></script>
+  <script src="../js/check-out.js"></script>
   <script
     type="module"
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

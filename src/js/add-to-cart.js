@@ -86,11 +86,18 @@ function renderAddedCartProducts(cartProducts) {
                             Remove
                           </button>
                           <button
-                            class="py-2 px-3 rounded-sm text-white bg-[${
-                              cartProduct.themeColor
-                            }] font-bold"
+                          onclick="checkOut(${cartProduct.id})"
+                            class="py-2 px-3 rounded-sm ${
+                              cartProduct.isCheckOut
+                                ? `border-[1px] border-[${cartProduct.themeColor}] text-secondary`
+                                : `bg-[${cartProduct.themeColor}] text-white`
+                            } font-bold"
                           >
-                            Place Order
+                            ${
+                              cartProduct.isCheckOut
+                                ? "Cancel Checkout"
+                                : "Checkout"
+                            }
                           </button>
                         </div>
                       </div>
@@ -128,15 +135,41 @@ function removeCartProduct(id) {
   cartPage.innerHTML = ``;
   renderAddedCartProducts(getProducts);
 }
+function checkOut(id) {
+  const checkOutItems = getProducts.map((product) => {
+    if (product.id === id) {
+      return {
+        ...product,
+        isCheckOut: !product.isCheckOut,
+      };
+    } else {
+      return product;
+    }
+  });
+  localStorage.setItem("cart", JSON.stringify(checkOutItems));
+  getProducts = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+  cartPage.innerHTML = ``;
+  renderCheckOutLength(getProducts);
+  renderAddedCartProducts(getProducts);
+}
 function searchProduct(e) {
   const searchName = e.target.value.trim();
   const filteredSearchName = getProducts.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
-  console.log(filteredSearchName);
   cartPage.innerHTML = ``;
   renderAddedCartProducts(filteredSearchName);
 }
+function renderCheckOutLength(checkOutProducts) {
+  const filteredProduct = checkOutProducts.filter(
+    ({ isCheckOut }) => isCheckOut
+  );
+  document.querySelector(".checkout-length").textContent =
+    filteredProduct.length;
+}
+renderCheckOutLength(getProducts);
 renderAddedCartProducts(getProducts);
 searchBox.addEventListener("input", searchProduct);
 sortBySelect.addEventListener("input", sortBy);

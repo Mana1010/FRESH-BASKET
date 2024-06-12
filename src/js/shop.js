@@ -245,13 +245,23 @@ export async function displayProduct() {
   renderPaginationFooter();
   renderProducts(currentSectionParams);
 }
+const checkOutId = [];
+const randomChar =
+  "2329I*&^HfkFMVNEOSdjfdmvcfkrfdvlerprtu(*)~``~6*&^$$^Jddfndfnrgkvkdffr313!@#$%%^&*(()*))%&!@#plvm<>?,.defx3sdawhsdjherkoomskdfm12254693873234394";
 
+for (let i = 0; i < 10; i++) {
+  const randomize = Math.floor(Math.random() * randomChar.length);
+  checkOutId.push(randomChar[randomize]);
+}
+console.log(checkOutId.join(""));
 function addToCartProduct(id) {
   const { currentSectionParams } = reusableVariables();
   const payload = currentSectionParams.find((product) => product.id === id);
   const updatedPayload = {
     ...payload,
+    checkOutId: checkOutId.join(""),
     addedCartDate: Date.now(),
+    isCheckOut: false,
   };
   const getItem = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
