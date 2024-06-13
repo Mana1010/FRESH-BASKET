@@ -8,11 +8,129 @@
     <title>Fresh Basket | Order History</title>
   </head>
   <body>
-    <main>
-      <div>ORDER HISTORY</div>
+    <main class="flex flex-col w-full h-screen">
+      <header
+        class="px-3 flex justify-between items-center py-2.5 space-x-4 shadow-lg"
+      >
+        <a href="/src/pages/index.html">
+          <div class="flex items-center space-x-1">
+            <img
+              src="../images/shopping-bag.png"
+              width="50"
+              alt="shopping-bag"
+            />
+            <h3 class="font-semibold text-secondary text-sm md:text-base">
+              FRESH BASKET
+            </h3>
+          </div>
+        </a>
+        <div class="w-[50%]">
+          <div
+            class="w-full h-[2.7rem] bg-transparent flex items-center ring-primary ring-[1px]"
+          >
+            <button
+              class="bg-primary flex items-center justify-center text-lg text-white px-2.5 h-full"
+            >
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+            <input
+              id="input-search-box"
+              type="text"
+              placeholder="Search your order"
+              class="bg-transparent px-3 outline-none flex-grow text-secondary placeholder:font-normal font-bold overflow-x-auto"
+            />
+            <button
+              id="remove-search-button"
+              class="items-center justify-center text-lg text-secondary px-2.5 h-full rounded-md hidden"
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+        <div class="flex space-x-2 items-center">
+          <a
+            href="add-to-cart.html"
+            class="relative flex items-center justify-center text-secondary"
+          >
+            <span class="text-3xl"
+              ><ion-icon name="cart-outline"></ion-icon
+            ></span>
+            <div
+              class="add-to-cart-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
+            >
+              0
+            </div>
+          </a>
+          <a
+            href="store.html#/1"
+            class="relative flex items-center justify-center text-secondary"
+          >
+            <span class="text-3xl"
+              ><ion-icon name="pricetags-outline"></ion-icon
+            ></span>
+          </a>
+          <a
+            href="check-out.html"
+            class="relative flex items-center justify-center text-secondary"
+          >
+            <span class="text-3xl"
+              ><ion-icon name="bag-check-outline"></ion-icon
+            ></span>
+            <div
+              class="checkout-length h-4 w-4 p-1.5 rounded-full bg-primary text-white top-0 right-0 absolute flex items-center justify-center text-[0.7rem]"
+            ></div>
+          </a>
+        </div>
+      </header>
+      <header class="flex justify-between items-center pr-3">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span
+              class="font-extrabold md:text-5xl flex items-center text-secondary text-2xl"
+              ><ion-icon name="timer"></ion-icon
+            ></span>
+            <h3 class="font-extrabold md:text-4xl text-primary text-xl">
+              <span class="text-secondary">ORDER </span> HISTORY
+            </h3>
+          </div>
+          <h6 class="italic text-secondary pl-2">
+            Your order is scheduled for delivery in 2 days
+          </h6>
+        </div>
+        <div class="flex flex-col">
+          <div>
+            <span class="text-secondary font-bold text-lg"
+              >Total Purchase:
+            </span>
+            <span class="total-amount text-secondary text-lg">0</span>
+          </div>
+          <div>
+            <span class="text-secondary font-bold text-lg"
+              >Total Ordered Items:
+            </span>
+            <span class="total-items text-secondary text-lg">0</span>
+          </div>
+        </div>
+      </header>
+      <div
+        class="order-history-page grid w-full grid-cols-1 md:grid-cols-2 gap-2 px-5 py-3"
+      >
+        <div
+          class="empty-page flex-grow items-center justify-center flex-col space-y-2 hidden"
+        >
+          <img src="../images/empty-cart.png" width="170" alt="empty-cart" />
+          <h2 class="text-secondary text-2xl font-bold">
+            You haven't placed an order yet.
+          </h2>
+          <a
+            href="./index.html#/1"
+            class="underline-offset-4 underline decoration-primary text-primary"
+            >ORDER NOW</a
+          >
+        </div>
+      </div>
     </main>
   </body>
-  <script src="history.html"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -25,4 +143,14 @@
       },
     };
   </script>
+  <script src="../js/order-history.js"></script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

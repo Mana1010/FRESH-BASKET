@@ -4,6 +4,8 @@ const itemsCount = document.querySelector(".items-count");
 const sortBySelect = document.querySelector(".sort-by-select");
 const searchBox = document.querySelector("#input-search-box");
 const noSearchFound = document.querySelector(".no-search-found-page");
+const addToCartLength = document.querySelector(".checkout-length");
+const orderHistoryLength = document.querySelector(".order-history-length");
 let getProducts = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
@@ -19,7 +21,7 @@ function renderAddedCartProducts(cartProducts) {
                     ).toLocaleString()}</h6>
                     <div
                       style="box-shadow: 0 0 3px black"
-                      class="w-full flex items-center rounded-md relative justify-between lg:h-[150px] flex-col lg:flex-row"
+                      class="w-full flex items-center rounded-md relative justify-between lg:h-[160px] flex-col lg:flex-row"
                     >
                       <div class="flex space-x-2 flex-col lg:flex-row lg:justify-start justify-center items-center space-y-2 lg:space-y-0">
                         <div

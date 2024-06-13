@@ -8,7 +8,11 @@ const paginationBtn = document.querySelectorAll("#pagination-btn-group > a");
 const footerPagination = document.querySelector(".pagination");
 
 function reusableVariables() {
+  const url = `${location.origin}/src/pages/store.html#/1`;
   const currentUrl = location.href.split(/[#|/]/);
+  if (isNaN(+currentUrl.at(-1))) {
+    location.href = url;
+  }
   const currentSection = currentUrl.at(-2).split("-")[0];
   const filteredProduct = productItems.filter(
     (product) => currentSection === product.type
@@ -16,10 +20,14 @@ function reusableVariables() {
   const updatedProducts = filteredProduct.length
     ? filteredProduct
     : productItems;
-  const updatedParams = +currentUrl.at(-1) - 1;
+
+  const updatedCurrentUrl =
+    currentUrl.at(-1) === "store.html" ? 1 : +currentUrl.at(-1);
+  const updatedParams = updatedCurrentUrl - 1;
+  console.log(updatedParams);
   const currentSectionParams = updatedProducts.slice(
     updatedParams * 8 === 0 ? 0 : updatedParams * 8,
-    +currentUrl.at(-1) * 8
+    updatedCurrentUrl * 8
   );
   const piecesOfPaginationBtn = Math.ceil(updatedProducts.length / 8);
   return {
@@ -28,6 +36,8 @@ function reusableVariables() {
     currentSection,
     filteredProduct,
     currentSectionParams,
+    url,
+    currentUrl,
   };
 }
 
@@ -138,12 +148,12 @@ function trackChanges(e) {
   }
 }
 function searchProducts(e) {
-  const { currentSectionParams } = reusableVariables();
+  const { currentSectionParams, url } = reusableVariables();
   const product = e.target.value.trim();
   const searchedItems = productItems.filter((item) =>
     item.name.toLowerCase().includes(product.toLowerCase())
   );
-  window.location.href = "http://127.0.0.1:5500/src/pages/store.html#/1";
+  window.location.href = url;
   if (!product.length) {
     renderPaginationFooter();
   } else {

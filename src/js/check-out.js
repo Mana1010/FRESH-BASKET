@@ -6,6 +6,7 @@ const emptyPage = document.querySelector(".empty-page");
 const noSearchFound = document.querySelector(".no-search-found-page");
 const placeOrderbtn = document.querySelector(".place-order-btn");
 const addToCartLength = document.querySelector(".add-to-cart-length");
+const orderHistoryLength = document.querySelector(".order-history-length");
 let getItems = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
@@ -21,7 +22,7 @@ function renderCheckOutProducts(checkOutProducts) {
       checkoutPage.innerHTML += `<div>
                       <div
                         style="box-shadow: 0 0 3px black"
-                        class="w-full flex items-center rounded-md relative justify-between lg:h-[150px] flex-col lg:flex-row"
+                        class="w-full flex items-center rounded-md relative justify-between lg:h-[160px] flex-col lg:flex-row"
                       >
                         <div class="flex space-x-2 flex-col lg:flex-row lg:justify-start justify-center items-center space-y-2 lg:space-y-0">
                           <div
@@ -161,6 +162,37 @@ function removeCheckOutItem(checkOutId) {
   displayTotalAmount(updatedGetCheckOutItems);
   displayTotalItems(updatedGetCheckOutItems);
 }
+
+function randomCode() {
+  const trackingNumber = [];
+  const randomChar =
+    "335424713242324354575345767879897557687989824343546889786756223244349479301934826925623925468233413361936818091381357231478453504934";
+  for (let i = 0; i < 15; i++) {
+    const randomize = Math.floor(Math.random() * randomChar.length);
+    trackingNumber.push(randomChar[randomize]);
+  }
+  return +trackingNumber.join("");
+}
+function addToOrderHistory(getOrders) {
+  const getOrderData = localStorage.getItem("order-history")
+    ? JSON.parse(localStorage.getItem("order-history"))
+    : [];
+  const orderHistoryData = getOrders.map((order) => {
+    const trackingNumber = randomCode();
+    return {
+      ...order,
+      trackingId: trackingNumber,
+    };
+  });
+  localStorage.setItem(
+    "order-history",
+    JSON.stringify([...orderHistoryData, ...getOrderData])
+  );
+  const getUpdatedOrderHistory = localStorage.getItem("order-history")
+    ? JSON.parse(localStorage.getItem("order-history"))
+    : [];
+  displayOrderHistoryLength(getUpdatedOrderHistory);
+}
 function placeOrder() {
   if (getCheckOutItems.length) {
   }
@@ -192,6 +224,7 @@ function placeOrder() {
       placeOrderbtn.classList.add("disabled:bg-slate-400");
       addToCartLength.textContent = getItems.length;
       checkoutPage.innerHTML = ``;
+      addToOrderHistory(getCheckOutItems);
       displayTotalItems(getUpdatedCheckItems);
       displayTotalAmount(getUpdatedCheckItems);
       renderCheckOutProducts(getUpdatedCheckItems);
@@ -203,6 +236,13 @@ function placeOrder() {
     }
   });
 }
+function displayOrderHistoryLength(getItems) {
+  orderHistoryLength.textContent = getItems.length;
+}
+const getOrderHistory = localStorage.getItem("order-history")
+  ? JSON.parse(localStorage.getItem("order-history"))
+  : [];
+displayOrderHistoryLength(getOrderHistory);
 displayTotalItems(getCheckOutItems);
 displayTotalAmount(getCheckOutItems);
 renderCartProductsLength();
