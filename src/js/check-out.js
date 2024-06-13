@@ -4,13 +4,16 @@ const totalItems = document.querySelector(".total-items");
 const searchBox = document.querySelector("#input-search-box");
 const emptyPage = document.querySelector(".empty-page");
 const noSearchFound = document.querySelector(".no-search-found-page");
+const placeOrderbtn = document.querySelector(".place-order-btn");
+const addToCartLength = document.querySelector(".add-to-cart-length");
 let getItems = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
 const getCheckOutItems = getItems.filter(({ isCheckOut }) => isCheckOut);
-console.log(getCheckOutItems);
 function renderCheckOutProducts(checkOutProducts) {
   if (checkOutProducts.length) {
+    placeOrderbtn.removeAttribute("disabled");
+    placeOrderbtn.classList.remove("disabled:bg-slate-400");
     emptyPage.style.display = "none";
     checkoutPage.classList.add("grid");
     checkoutPage.classList.remove("hidden");
@@ -96,16 +99,19 @@ function renderCheckOutProducts(checkOutProducts) {
     emptyPage.style.display = "flex";
     checkoutPage.classList.add("hidden");
     checkoutPage.classList.remove("grid");
+    placeOrderbtn.setAttribute("disabled", true);
+    placeOrderbtn.classList.add("disabled:bg-slate-400");
   }
 }
 function searchProduct(e) {
   const searchName = e.target.value.trim();
-  console.log(searchName);
   const filteredSearchName = getCheckOutItems.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
   if (!filteredSearchName.length && searchName) {
-    document.querySelector(".keyword").textContent = `"${searchName}"`;
+    document.querySelector(".keyword").textContent = `"${
+      searchName.length >= 40 ? `${searchName.slice(0, 40)}...` : searchName
+    }"`;
     noSearchFound.style.display = "flex";
     emptyPage.style.display = "none";
     checkoutPage.style.display = "none";
@@ -155,8 +161,51 @@ function removeCheckOutItem(checkOutId) {
   displayTotalAmount(updatedGetCheckOutItems);
   displayTotalItems(updatedGetCheckOutItems);
 }
+function placeOrder() {
+  if (getCheckOutItems.length) {
+  }
+  const total = getCheckOutItems.reduce((acc, { price }) => {
+    return acc + price;
+  }, 0);
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  }).format(total);
+  Swal.fire({
+    title: "Confirm Order",
+    html: `Your total puchase is: <strong>${formattedNumber}$</strong>`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#E56E1E",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Place Order",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const getUncheckItems = getItems.filter(({ isCheckOut }) => !isCheckOut);
+      localStorage.setItem("cart", JSON.stringify(getUncheckItems));
+      getItems = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart"))
+        : [];
+      const getUpdatedCheckItems = getItems.filter(
+        ({ isCheckOut }) => isCheckOut
+      );
+      placeOrderbtn.setAttribute("disabled", true);
+      placeOrderbtn.classList.add("disabled:bg-slate-400");
+      addToCartLength.textContent = getItems.length;
+      checkoutPage.innerHTML = ``;
+      displayTotalItems(getUpdatedCheckItems);
+      displayTotalAmount(getUpdatedCheckItems);
+      renderCheckOutProducts(getUpdatedCheckItems);
+      Swal.fire({
+        title: "Order Placed",
+        html: "Thank you for purchasing from <strong>FRESH BASKET</strong>",
+        icon: "success",
+      });
+    }
+  });
+}
 displayTotalItems(getCheckOutItems);
 displayTotalAmount(getCheckOutItems);
 renderCartProductsLength();
 renderCheckOutProducts(getCheckOutItems);
+placeOrderbtn.addEventListener("click", placeOrder);
 searchBox.addEventListener("input", searchProduct);

@@ -164,7 +164,9 @@ function searchProduct(e) {
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
   if (!filteredSearchName.length && searchName) {
-    document.querySelector(".keyword").textContent = `"${searchName}"`;
+    document.querySelector(".keyword").textContent = `"${
+      searchName.length >= 40 ? `${searchName.slice(0, 40)}...` : searchName
+    }"`;
     noSearchFound.style.display = "flex";
     emptyPage.style.display = "none";
     cartPage.style.display = "none";
