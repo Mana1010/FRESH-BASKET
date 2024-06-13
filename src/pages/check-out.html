@@ -95,19 +95,24 @@
               <span class="text-secondary">YOUR </span> CHECKOUT
             </h3>
           </div>
-          <div class="flex flex-col">
-            <div>
-              <span class="text-secondary font-bold text-lg"
-                >Total Amount:
-              </span>
-              <span class="total-amount text-secondary text-lg"></span>
+          <div class="flex space-x-4 items-center">
+            <div class="flex flex-col">
+              <div>
+                <span class="text-secondary font-bold text-lg"
+                  >Total Amount:
+                </span>
+                <span class="total-amount text-secondary text-lg"></span>
+              </div>
+              <div>
+                <span class="text-secondary font-bold text-lg"
+                  >Total Items:
+                </span>
+                <span class="total-items text-secondary text-lg"></span>
+              </div>
             </div>
-            <div>
-              <span class="text-secondary font-bold text-lg"
-                >Total Items:
-              </span>
-              <span class="total-items text-secondary text-lg"></span>
-            </div>
+            <button class="px-2.5 h-[40px] rounded-sm text-white bg-primary">
+              Place Order
+            </button>
           </div>
         </header>
         <div
@@ -118,13 +123,26 @@
         >
           <img src="../images/empty-cart.png" width="170" alt="empty-cart" />
           <h2 class="text-secondary text-2xl font-bold">
-            NO ITEMS IN YOUR CART?
+            You have not added any items to checkout yet
           </h2>
           <a
-            href="./store.html#/1"
+            href="./add-to-cart.html"
             class="underline-offset-4 underline decoration-primary text-primary"
-            >SHOP HERE</a
+            >CHECKOUT HERE</a
           >
+        </div>
+        <div
+          class="no-search-found-page flex-grow items-center justify-center flex-col space-y-2 w-full h-full hidden"
+        >
+          <img
+            src="../images/no-search-found.png"
+            width="170"
+            alt="no-search-found"
+          />
+          <h2 class="text-secondary text-2xl font-bold">
+            You have no checkout item named
+            <span class="keyword text-primary font-bold"></span>
+          </h2>
         </div>
       </div>
     </main>

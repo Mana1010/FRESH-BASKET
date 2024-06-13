@@ -2,6 +2,8 @@ const checkoutPage = document.querySelector(".checkout-page");
 const totalAmount = document.querySelector(".total-amount");
 const totalItems = document.querySelector(".total-items");
 const searchBox = document.querySelector("#input-search-box");
+const emptyPage = document.querySelector(".empty-page");
+const noSearchFound = document.querySelector(".no-search-found-page");
 let getItems = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
@@ -9,6 +11,7 @@ const getCheckOutItems = getItems.filter(({ isCheckOut }) => isCheckOut);
 console.log(getCheckOutItems);
 function renderCheckOutProducts(checkOutProducts) {
   if (checkOutProducts.length) {
+    emptyPage.style.display = "none";
     checkoutPage.classList.add("grid");
     checkoutPage.classList.remove("hidden");
     Array.from(checkOutProducts).map((checkOutProducts) => {
@@ -90,9 +93,9 @@ function renderCheckOutProducts(checkOutProducts) {
                     </div>`;
     });
   } else {
-    // emptyPage.style.display = "flex";
-    // cartPage.classList.add("hidden");
-    // cartPage.classList.remove("grid");
+    emptyPage.style.display = "flex";
+    checkoutPage.classList.add("hidden");
+    checkoutPage.classList.remove("grid");
   }
 }
 function searchProduct(e) {
@@ -101,8 +104,18 @@ function searchProduct(e) {
   const filteredSearchName = getCheckOutItems.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
-  checkoutPage.innerHTML = ``;
-  renderCheckOutProducts(filteredSearchName);
+  if (!filteredSearchName.length && searchName) {
+    document.querySelector(".keyword").textContent = `"${searchName}"`;
+    noSearchFound.style.display = "flex";
+    emptyPage.style.display = "none";
+    checkoutPage.style.display = "none";
+  } else {
+    noSearchFound.style.display = "none";
+    emptyPage.style.display = "flex";
+    checkoutPage.style.display = "grid";
+    checkoutPage.innerHTML = ``;
+    renderCheckOutProducts(filteredSearchName);
+  }
 }
 function renderCartProductsLength() {
   document.querySelector(".add-to-cart-length").textContent = getItems.length;

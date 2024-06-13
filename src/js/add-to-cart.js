@@ -163,12 +163,14 @@ function searchProduct(e) {
   const filteredSearchName = getProducts.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
-  if (!filteredSearchName.length) {
+  if (!filteredSearchName.length && searchName) {
     document.querySelector(".keyword").textContent = `"${searchName}"`;
     noSearchFound.style.display = "flex";
+    emptyPage.style.display = "none";
     cartPage.style.display = "none";
   } else {
     noSearchFound.style.display = "none";
+    emptyPage.style.display = "flex";
     cartPage.style.display = "grid";
     cartPage.innerHTML = ``;
     renderAddedCartProducts(filteredSearchName);
