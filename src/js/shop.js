@@ -6,7 +6,6 @@ const backToTopBtn = document.querySelector(".back-to-top-btn");
 const productSection = document.querySelector("#product-section");
 const paginationBtn = document.querySelectorAll("#pagination-btn-group > a");
 const footerPagination = document.querySelector(".pagination");
-
 function reusableVariables() {
   const url = `${location.origin}/src/pages/store.html#/1`;
   const currentUrl = location.href.split(/[#|/]/);
@@ -24,7 +23,6 @@ function reusableVariables() {
   const updatedCurrentUrl =
     currentUrl.at(-1) === "store.html" ? 1 : +currentUrl.at(-1);
   const updatedParams = updatedCurrentUrl - 1;
-  console.log(updatedParams);
   const currentSectionParams = updatedProducts.slice(
     updatedParams * 8 === 0 ? 0 : updatedParams * 8,
     updatedCurrentUrl * 8
@@ -102,7 +100,9 @@ function renderProducts(products) {
         <div
           class="flex items-center justify-center w-full space-x-2 pt-2"
         >
-        <button id="order-btn"  class="rounded-sm bg-primary px-2 py-1.5 text-white text-sm">
+        <button onclick="orderProduct(${
+          product.id
+        })" class="rounded-sm bg-primary px-2 py-1.5 text-white text-sm">
         ORDER NOW
       </button>
           <button
@@ -155,13 +155,16 @@ function searchProducts(e) {
   );
   window.location.href = url;
   if (!product.length) {
+    footerPagination.innerHTML = "";
     renderPaginationFooter();
   } else {
     footerPagination.innerHTML = "";
   }
+
   productSection.innerHTML = "";
   renderProducts(product.length ? searchedItems : currentSectionParams);
 }
+
 //This function is for the arrow button that it will appear when the user scrolled down the page and when the user clicked it the web page will automatically scrolled up on its own
 function handleScrollPx() {
   if (window.scrollY >= 200) {
@@ -172,7 +175,6 @@ function handleScrollPx() {
     backToTopBtn.classList.remove("flex");
   }
 }
-let price = 0;
 function addOrder(id) {
   const { currentSectionParams } = reusableVariables();
   for (let i = 0; i < currentSectionParams.length; i++) {
@@ -255,22 +257,24 @@ export async function displayProduct() {
   renderPaginationFooter();
   renderProducts(currentSectionParams);
 }
-function randomCode() {
+function randomCode(count) {
+  const trackingNumber = [];
   const checkOutId = [];
   const addToCart = [];
   const randomChar =
-    "3354247132423243545753457678798975576879898243435468897867562232443404934";
-  for (let i = 0; i < 10; i++) {
+    "3354247132423243545753457678798975576879898243435468897867562232443403696796744934";
+  for (let i = 0; i < count; i++) {
     const randomize = Math.floor(Math.random() * randomChar.length);
     const randomize2 = Math.floor(Math.random() * randomChar.length);
     checkOutId.push(randomChar[randomize]);
     addToCart.push(randomChar[randomize2]);
+    trackingNumber.push(randomChar[randomize]);
   }
-  return { checkOutId, addToCart };
+  return { checkOutId, addToCart, trackingNumber };
 }
 
 function addToCartProduct(id) {
-  const { checkOutId, addToCart } = randomCode();
+  const { checkOutId, addToCart } = randomCode(10);
   const { currentSectionParams } = reusableVariables();
   const payload = currentSectionParams.find((product) => product.id === id);
 
@@ -299,6 +303,54 @@ function addToCartProduct(id) {
     icon: "success",
   });
 }
+function orderProduct(id) {
+  const { trackingNumber } = randomCode(15);
+  const { currentSectionParams } = reusableVariables();
+  const order = currentSectionParams.find((order) => order.id === id);
+  const orderHistoryItems = localStorage.getItem("order-history")
+    ? JSON.parse(localStorage.getItem("order-history"))
+    : [];
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  }).format(order.price);
+  Swal.fire({
+    title: "Confirm Order",
+    html: `Your total puchase is: <strong>${formattedNumber}$</strong>`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#E56E1E",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Confirm order",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.setItem(
+        "order-history",
+        JSON.stringify([
+          { ...order, trackingId: +trackingNumber.join("") },
+          ...orderHistoryItems,
+        ])
+      );
+      const updatedOrderHistortyItems = localStorage.getItem("order-history")
+        ? JSON.parse(localStorage.getItem("order-history"))
+        : [];
+      document.querySelector(".order-history-length").textContent =
+        updatedOrderHistortyItems.length;
+      Swal.fire({
+        title: "Order Placed",
+        html: "Thank you for purchasing from <strong>FRESH BASKET</strong>",
+        icon: "success",
+      });
+    }
+  });
+}
+window.orderProduct = orderProduct;
+function orderHistoryCount() {
+  const orderHistoryItems = localStorage.getItem("order-history")
+    ? JSON.parse(localStorage.getItem("order-history"))
+    : [];
+  document.querySelector(".order-history-length").textContent =
+    orderHistoryItems.length;
+}
 const getExistingCartItems = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
@@ -312,6 +364,7 @@ document.querySelector(".order-history-length").textContent =
   getExistingHistoryItems.length;
 window.addToCartProduct = addToCartProduct;
 displayProduct();
+orderHistoryCount();
 inputSearchBox.addEventListener("input", searchProducts);
 backToTopBtn.addEventListener("click", backToTop);
 window.addEventListener("scroll", handleScrollPx);

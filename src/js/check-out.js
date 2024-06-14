@@ -105,8 +105,11 @@ function renderCheckOutProducts(checkOutProducts) {
   }
 }
 function searchProduct(e) {
+  const rendergetCheckOutItems = getItems.filter(
+    ({ isCheckOut }) => isCheckOut
+  );
   const searchName = e.target.value.trim();
-  const filteredSearchName = getCheckOutItems.filter((product) =>
+  const filteredSearchName = rendergetCheckOutItems.filter((product) =>
     product.name.toLowerCase().includes(searchName.toLowerCase())
   );
   if (!filteredSearchName.length && searchName) {

@@ -1,18 +1,22 @@
 const orderHistoryPage = document.querySelector(".order-history-page");
 const emptyPage = document.querySelector(".empty-page");
-const noSearchFound = document.querySelector(".no-search-found-page");
 const totalAmount = document.querySelector(".total-amount");
 const totalItems = document.querySelector(".total-items");
 const checkOutLength = document.querySelector(".checkout-length");
 const addToCartLength = document.querySelector(".add-to-cart-length");
-
+const searchBox = document.querySelector("#input-search-box");
+const keyword = document.querySelector(".keyword");
 const getOrderItems = localStorage.getItem("order-history")
   ? JSON.parse(localStorage.getItem("order-history"))
   : [];
 
 function renderOrderHistory(getOrderPlaced) {
-  getOrderPlaced.map((order) => {
-    orderHistoryPage.innerHTML += `<div>
+  if (getOrderPlaced.length) {
+    emptyPage.style.display = "none";
+    orderHistoryPage.classList.add("grid");
+    orderHistoryPage.classList.remove("hidden");
+    getOrderPlaced.map((order) => {
+      orderHistoryPage.innerHTML += `<div>
           <div
             style="box-shadow: 0 0 3px black"
             class="w-full flex items-center rounded-md relative justify-between lg:h-[160px] flex-col lg:flex-row"
@@ -21,7 +25,9 @@ function renderOrderHistory(getOrderPlaced) {
               class="flex space-x-2 flex-col lg:flex-row lg:justify-start justify-center items-center space-y-2 lg:space-y-0"
             >
               <div
-                class="w-8 h-8 rounded-full p-1 bg-[${order.themeColor}] flex items-center justify-center absolute right-[-10px] top-[-10px] z-[999]"
+                class="w-8 h-8 rounded-full p-1 bg-[${
+                  order.themeColor
+                }] flex items-center justify-center absolute right-[-10px] top-[-10px] z-[999]"
               >
                 <img
                   src="${order.icon}"
@@ -53,7 +59,9 @@ function renderOrderHistory(getOrderPlaced) {
                     ><ion-icon name="star"></ion-icon
                   ></span>
                 </div>
-                <h2 class="font-bold text-secondary">${order.basePrice}$/lbs</h2>
+                <h2 class="font-bold text-secondary">${order.basePrice}$/${
+        order.isPerPound ? "lb" : "each"
+      }</h2>
               </div>
             </div>
             <div
@@ -85,7 +93,29 @@ function renderOrderHistory(getOrderPlaced) {
             </div>
           </div>
         </div>`;
-  });
+    });
+  }
+}
+
+function searchProduct(e) {
+  const searchName = e.target.value.trim();
+  const filteredSearchName = getOrderItems.filter((product) =>
+    product.name.toLowerCase().includes(searchName.toLowerCase())
+  );
+
+  if (!filteredSearchName.length && searchName) {
+    keyword.textContent = `"${
+      searchName.length >= 40 ? `${searchName.slice(0, 40)}...` : searchName
+    }"`;
+
+    emptyPage.style.display = "none";
+    orderHistoryPage.style.display = "none";
+  } else {
+    emptyPage.style.display = "flex";
+    orderHistoryPage.style.display = "grid";
+    orderHistoryPage.innerHTML = ``;
+    renderOrderHistory(filteredSearchName);
+  }
 }
 function displayTotalPurchase(totalCheckOutAmount) {
   const total = totalCheckOutAmount.reduce((acc, { price }) => {
@@ -104,9 +134,11 @@ function displayLength() {
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
   const getCheckedItems = getCartItems.filter(({ isCheckOut }) => isCheckOut);
+
   checkOutLength.textContent = getCheckedItems.length;
   addToCartLength.textContent = getCartItems.length;
 }
+searchBox.addEventListener("input", searchProduct);
 displayLength();
 displayTotalItems(getOrderItems);
 displayTotalPurchase(getOrderItems);

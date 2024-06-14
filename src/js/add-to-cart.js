@@ -187,7 +187,14 @@ function renderCheckOutLength(checkOutProducts) {
   document.querySelector(".checkout-length").textContent =
     filteredProduct.length;
 }
+function orderHistoryLengthFunc() {
+  const getOrderItems = localStorage.getItem("order-history")
+    ? JSON.parse(localStorage.getItem("order-history"))
+    : [];
+  orderHistoryLength.textContent = getOrderItems.length;
+}
 
+orderHistoryLengthFunc();
 renderCheckOutLength(getProducts);
 renderAddedCartProducts(getProducts);
 searchBox.addEventListener("input", searchProduct);

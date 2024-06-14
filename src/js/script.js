@@ -12,8 +12,8 @@ function backToTopFunc() {
 function submitForm(e) {
   e.preventDefault();
   Swal.fire({
-    title: "Good job!",
-    text: "Your Message successfully submitted",
+    title: "Thank you",
+    text: "Your message successfully submitted",
     icon: "success",
   });
 }
